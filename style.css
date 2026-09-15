@@ -1,24 +1,42 @@
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(254, 177, 83);
+    background: linear-gradient(135deg, #feb153, #f78b2d);
     text-align: center;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    color: #191913;
+}
+
+h1 {
+    padding-top: 40px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #191913;
+    text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.4);
+    animation: headingIn 0.8s ease-out;
 }
 
 .container {
-    height: 70vh;
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 20px;
 }
 
 .game {
     height: 60vmin;
     width: 60vmin;
+    max-width: 420px;
+    max-height: 420px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -29,33 +47,112 @@ body {
 .box {
     height: 18vmin;
     width: 18vmin;
+    max-height: 125px;
+    max-width: 125px;
     border-radius: 1rem;
-    border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-    font-size: 8vmin;
-    color: black;
-    background-color: lightgrey;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(145deg, #f5f5f5, #d6d6d6);
+    box-shadow: 6px 6px 12px rgba(120, 65, 15, 0.25);
+    font-size: clamp(2rem, 8vmin, 4rem);
+    font-weight: bold;
+    color: #191913;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.box:hover:not(:disabled) {
+    transform: translateY(-5px) scale(1.04);
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(120, 65, 15, 0.3);
+}
+
+.box:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.box:disabled {
+    opacity: 1;
+    cursor: default;
 }
 
 #resetbt {
-    padding: 1rem;
+    padding: 1rem 2rem;
     font-size: 1.25rem;
-    background-color: #191913;
-    color: aliceblue;
-    border-radius: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #191913, #39392d);
+    color: white;
     border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.2s ease;
+}
+
+#resetbt:hover {
+    transform: translateY(-3px);
+    background: #39392d;
+}
+
+#resetbt:active {
+    transform: scale(0.97);
 }
 
 #msg {
-    color: black;
-    font-size: 8vmin;
+    color: #191913;
+    font-size: clamp(2rem, 8vmin, 4rem);
+    font-weight: bold;
+    text-shadow: 2px 3px 0 rgba(255, 255, 255, 0.3);
+    animation: messageIn 0.5s ease-out;
 }
 
 .msgcontainer {
-    height: 20vmin;
+    min-height: 20vmin;
+    padding: 20px;
 }
 
 .hide {
     display: none;
+}
+
+@keyframes headingIn {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 500px) {
+    .game {
+        width: 90vmin;
+        height: 90vmin;
+        gap: 2vmin;
+    }
+
+    .box {
+        width: 28vmin;
+        height: 28vmin;
+        border-radius: 0.8rem;
+    }
+
+    #resetbt {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
 }
