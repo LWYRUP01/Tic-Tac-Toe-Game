@@ -65,6 +65,11 @@ const checkWinner = () => {
             }
         }
     }
+    if ([...boxes].every(box => box.innerText !== "")) {
+        msg.innerText = "Game Draw!";
+        messageContainer.classList.remove("hide");
+        disabledboxes();
+    }
 }
 
 const resetGame = () => {
